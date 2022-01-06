@@ -174,7 +174,7 @@ namespace WishListTests
             using (var streamReader = new StreamReader(filePath))
             {
                 file = streamReader.ReadToEnd();
-            }
+            }   
             var pattern = @"public\s*IActionResult\s*Delete\s*?[(]\s*?int\s*id\s*?[)]\s*?{\s*?.*_context.Items.FirstOrDefault[(].*[.]Id\s*?==\s*?id\s*?[)];\s*?_context([.]Items)?[.]Remove[(]\s*?.*\s*?[)];\s*?_context[.]SaveChanges[(]\s*?[)];\s*?return\s*RedirectToAction[(]""Index""(,\s*?""Item"")?[)];\s*?}";
             var rgx = new Regex(pattern);
             Assert.True(rgx.IsMatch(file), "`ItemController`'s `Delete` action does not appear to be removing the `Item` with the matching `Id` to the one provided from `_context.Items`, `SaveChanges`, and then redirecting to the `Item`'s `Index` action.");
